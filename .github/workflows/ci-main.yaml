@@ -1,0 +1,53 @@
+name: CI Pipeline with SLSA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-backend:
+    uses: ./.github/workflows/java-build.yml
+    with:
+      working-directory: backend
+
+  test-frontend:
+    uses: ./.github/workflows/angular-test.yml
+    with:
+      working-directory: frontend
+
+  build-backend-image:
+    needs: build-backend
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build & Push Backend Docker with SLSA
+        uses: slsa-framework/slsa-github-generator/actions/docker@v1.8.0
+        with:
+          image: ${{ secrets.DOCKER_USERNAME }}/hello-world-backend
+          push: true
+          dockerfile: backend/Dockerfile
+          context: backend
+          registry-username: ${{ secrets.DOCKER_USERNAME }}
+          registry-password: ${{ secrets.DOCKER_PASSWORD }}
+
+  build-frontend-image:
+    needs: test-frontend
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build & Push Frontend Docker with SLSA
+        uses: slsa-framework/slsa-github-generator/actions/docker@v1.8.0
+        with:
+          image: ${{ secrets.DOCKER_USERNAME }}/hello-world-frontend
+          push: true
+          dockerfile: frontend/Dockerfile
+          context: frontend
+          registry-username: ${{ secrets.DOCKER_USERNAME }}
+          registry-password: ${{ secrets.DOCKER_PASSWORD }}
