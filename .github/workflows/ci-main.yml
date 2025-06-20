@@ -19,13 +19,13 @@ jobs:
   build-backend-image:
     needs: build-backend
     runs-on: ubuntu-latest
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_docker_slsa3.yml@v1.8.0
     permissions:
       contents: read
-      id-token: write
+      id-token: write  
     steps:
       - uses: actions/checkout@v4
       - name: Build & Push Backend Docker with SLSA
-        uses: slsa-framework/slsa-github-generator/.github/workflows/builder_docker_slsa3.yml@v1.8.0
         with:
           image: ${{ secrets.DOCKER_USERNAME }}/hello-world-backend
           push: true
@@ -37,13 +37,13 @@ jobs:
   build-frontend-image:
     needs: test-frontend
     runs-on: ubuntu-latest
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_docker_slsa3.yml@v1.8.0
     permissions:
       contents: read
       id-token: write
     steps:
       - uses: actions/checkout@v4
       - name: Build & Push Frontend Docker with SLSA
-        uses: slsa-framework/slsa-github-generator/.github/workflows/builder_docker_slsa3.yml@v1.8.0
         with:
           image: ${{ secrets.DOCKER_USERNAME }}/hello-world-frontend
           push: true
