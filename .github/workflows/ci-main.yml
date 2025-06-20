@@ -7,12 +7,12 @@ on:
 
 jobs:
   build-backend:
-    uses: .github/workflows/java-build.yml@main
+    uses: ./github/workflows/java-build.yml@main
     with:
       working-directory: backend
 
   test-frontend:
-    uses: .github/workflows/angular-test.yml@main
+    uses: ./github/workflows/angular-test.yml@main
     with:
       working-directory: frontend
 
