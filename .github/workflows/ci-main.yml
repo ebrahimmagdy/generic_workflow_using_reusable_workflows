@@ -1,4 +1,4 @@
-name: CI Pipeline with SLSA
+name: CI Pipeline with
 
 on:
   push:
