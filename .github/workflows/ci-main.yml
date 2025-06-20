@@ -12,7 +12,7 @@ jobs:
       working-directory: backend
 
   test-frontend:
-    uses: ebrahimmagdy/github_workflows/.github/workflows/angular-test.yml@main
+    uses: ebrahimmagdy/github_workflows/.github/workflows/angular-build.yml@main
     with:
       working-directory: frontend
 
