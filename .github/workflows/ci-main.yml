@@ -29,7 +29,7 @@ jobs:
         with:
           image: ${{ secrets.DOCKER_USERNAME }}/hello-world-backend
           push: true
-          dockerfile: backend/Dockerfile
+          dockerfile: hello-world-backend/Dockerfile
           context: backend
           registry-username: ${{ secrets.DOCKER_USERNAME }}
           registry-password: ${{ secrets.DOCKER_PASSWORD }}
@@ -47,7 +47,7 @@ jobs:
         with:
           image: ${{ secrets.DOCKER_USERNAME }}/hello-world-frontend
           push: true
-          dockerfile: frontend/Dockerfile
+          dockerfile: hello-world-frontend/Dockerfile
           context: frontend
           registry-username: ${{ secrets.DOCKER_USERNAME }}
           registry-password: ${{ secrets.DOCKER_PASSWORD }}
