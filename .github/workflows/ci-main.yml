@@ -18,23 +18,22 @@ jobs:
 
   build-backend-image:
     needs: build-backend
-    runs-on: ubuntu-latest
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_docker_slsa3.yml@v1.8.0
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v1.8.0
     permissions:
       contents: read
-      id-token: write  
+      id-token: write
     with:
       image: ${{ secrets.DOCKER_USERNAME }}/hello-world-backend
       push: true
       dockerfile: hello-world-backend/Dockerfile
-      context: backend
+      context: hello-world-backend
       registry-username: ${{ secrets.DOCKER_USERNAME }}
       registry-password: ${{ secrets.DOCKER_PASSWORD }}
 
-  build-frontend-image:
+
+  build-backend-image:
     needs: test-frontend
-    runs-on: ubuntu-latest
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_docker_slsa3.yml@v1.8.0
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v1.8.0
     permissions:
       contents: read
       id-token: write
@@ -42,7 +41,8 @@ jobs:
       image: ${{ secrets.DOCKER_USERNAME }}/hello-world-frontend
       push: true
       dockerfile: hello-world-frontend/Dockerfile
-      context: frontend
+      context: hello-world-frontend
       registry-username: ${{ secrets.DOCKER_USERNAME }}
       registry-password: ${{ secrets.DOCKER_PASSWORD }}
+
 
