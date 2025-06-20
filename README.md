@@ -23,9 +23,7 @@ This project demonstrates a full-stack application with a secure CI/CD pipeline 
 │   └── src/...
 └── .github/
     └── workflows/
-        ├── ci-main.yml          # Main orchestrating workflow
-        ├── java-build.yml       # Reusable Maven build workflow
-        └── angular-test.yml     # Reusable Angular test workflow
+        └──  ci-main.yml          # Main orchestrating workflow
 
 ## 🧪 How to Test It (with Docker)
 
