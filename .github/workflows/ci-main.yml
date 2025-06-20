@@ -23,16 +23,13 @@ jobs:
     permissions:
       contents: read
       id-token: write  
-    steps:
-      - uses: actions/checkout@v4
-      - name: Build & Push Backend Docker with SLSA
-        with:
-          image: ${{ secrets.DOCKER_USERNAME }}/hello-world-backend
-          push: true
-          dockerfile: hello-world-backend/Dockerfile
-          context: backend
-          registry-username: ${{ secrets.DOCKER_USERNAME }}
-          registry-password: ${{ secrets.DOCKER_PASSWORD }}
+    with:
+      image: ${{ secrets.DOCKER_USERNAME }}/hello-world-backend
+      push: true
+      dockerfile: hello-world-backend/Dockerfile
+      context: backend
+      registry-username: ${{ secrets.DOCKER_USERNAME }}
+      registry-password: ${{ secrets.DOCKER_PASSWORD }}
 
   build-frontend-image:
     needs: test-frontend
@@ -41,14 +38,11 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    steps:
-      - uses: actions/checkout@v4
-      - name: Build & Push Frontend Docker with SLSA
-        with:
-          image: ${{ secrets.DOCKER_USERNAME }}/hello-world-frontend
-          push: true
-          dockerfile: hello-world-frontend/Dockerfile
-          context: frontend
-          registry-username: ${{ secrets.DOCKER_USERNAME }}
-          registry-password: ${{ secrets.DOCKER_PASSWORD }}
+    with:
+      image: ${{ secrets.DOCKER_USERNAME }}/hello-world-frontend
+      push: true
+      dockerfile: hello-world-frontend/Dockerfile
+      context: frontend
+      registry-username: ${{ secrets.DOCKER_USERNAME }}
+      registry-password: ${{ secrets.DOCKER_PASSWORD }}
 
