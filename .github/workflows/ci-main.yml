@@ -9,12 +9,12 @@ jobs:
   build-backend:
     uses: ebrahimmagdy/github_workflows/.github/workflows/java-build.yml@main
     with:
-      working-directory: backend
+      working-directory: hello-world-backend
 
   test-frontend:
     uses: ebrahimmagdy/github_workflows/.github/workflows/angular-build.yml@main
     with:
-      working-directory: frontend
+      working-directory: hello-world-frontend
 
   build-backend-image:
     needs: build-backend
