@@ -31,7 +31,7 @@ jobs:
       registry-password: ${{ secrets.DOCKER_PASSWORD }}
 
 
-  build-backend-image:
+  build-frontend-image:
     needs: test-frontend
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v1.8.0
     permissions:
