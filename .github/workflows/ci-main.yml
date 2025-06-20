@@ -7,12 +7,12 @@ on:
 
 jobs:
   build-backend:
-    uses: ebrahimmagdy/github_workflows/.github/workflows/java-build.yml@964319ad8fab74192f67c659bba66309fcc5d2ae
+    uses: ebrahimmagdy/github_workflows/.github/workflows/java-build.yml@f4638b8987b120d90b629d35228b14e91ce784ad
     with:
       working-directory: hello-world-backend
 
   test-frontend:
-    uses: ebrahimmagdy/github_workflows/.github/workflows/angular-build.yml@964319ad8fab74192f67c659bba66309fcc5d2ae
+    uses: ebrahimmagdy/github_workflows/.github/workflows/angular-build.yml@f4638b8987b120d90b629d35228b14e91ce784ad
     with:
       working-directory: hello-world-frontend
 
