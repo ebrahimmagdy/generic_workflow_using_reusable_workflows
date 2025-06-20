@@ -1,4 +1,4 @@
-name: CI Pipeline with
+name: CI Pipeline with slsa
 
 on:
   push:
