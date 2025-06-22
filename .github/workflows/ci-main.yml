@@ -7,42 +7,44 @@ on:
 
 jobs:
   build-backend:
-    uses: ebrahimmagdy/github_workflows/.github/workflows/java-build.yml@f4638b8987b120d90b629d35228b14e91ce784ad
+    uses: ebrahimmagdy/github_workflows/.github/workflows/java-build.yml@main
     with:
       working-directory: hello-world-backend
 
   test-frontend:
-    uses: ebrahimmagdy/github_workflows/.github/workflows/angular-build.yml@f4638b8987b120d90b629d35228b14e91ce784ad
+    uses: ebrahimmagdy/github_workflows/.github/workflows/angular-build.yml@main
     with:
       working-directory: hello-world-frontend
 
-  build-backend-image:
-    needs: build-backend
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v1.8.0
-    permissions:
-      contents: read
-      id-token: write
-    with:
-      image: ${{ secrets.DOCKER_USERNAME }}/hello-world-backend
-      push: true
-      dockerfile: hello-world-backend/Dockerfile
-      context: hello-world-backend
-      registry-username: ${{ secrets.DOCKER_USERNAME }}
-      registry-password: ${{ secrets.DOCKER_PASSWORD }}
+  # build-backend-image:
+  #   needs: build-backend
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v2.1.0
+  #         slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v1.8.0
+  #   permissions:
+  #     contents: write
+  #     id-token: write
+  #     actions: read
+  #   with:
+  #     image: ${{ secrets.DOCKER_USERNAME }}/hello-world-backend
+  #     push: true
+  #     dockerfile: hello-world-backend/Dockerfile
+  #     context: hello-world-backend
+  #     registry-username: ${{ secrets.DOCKER_USERNAME }}
+  #     registry-password: ${{ secrets.DOCKER_PASSWORD }}
 
 
-  build-frontend-image:
-    needs: test-frontend
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v1.8.0
-    permissions:
-      contents: read
-      id-token: write
-    with:
-      image: ${{ secrets.DOCKER_USERNAME }}/hello-world-frontend
-      push: true
-      dockerfile: hello-world-frontend/Dockerfile
-      context: hello-world-frontend
-      registry-username: ${{ secrets.DOCKER_USERNAME }}
-      registry-password: ${{ secrets.DOCKER_PASSWORD }}
+  # build-frontend-image:
+  #   needs: test-frontend
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v1.8.0
+  #   permissions:
+  #     contents: read
+  #     id-token: write
+  #   with:
+  #     image: ${{ secrets.DOCKER_USERNAME }}/hello-world-frontend
+  #     push: true
+  #     dockerfile: hello-world-frontend/Dockerfile
+  #     context: hello-world-frontend
+  #     registry-username: ${{ secrets.DOCKER_USERNAME }}
+  #     registry-password: ${{ secrets.DOCKER_PASSWORD }}
 
 
