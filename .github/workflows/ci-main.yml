@@ -17,9 +17,9 @@ jobs:
       working-directory: hello-world-frontend
 
   build-backend-image:
-    uses: ebrahimmagdy/github_workflows/.github/workflows/docker-build-and-push.yml@main
+    uses: ebrahimmagdy/github_workflows/.github/workflows/docker-build-and-push.yml
     with:
-      image: ${{ format('{0}/hello-world-backend', vars.DOCKER_USERNAME) }}
+      image: ibrahimmagdy01/hello-world-backend
       context: hello-world-backend
       dockerfile: hello-world-backend/Dockerfile
       push: true
