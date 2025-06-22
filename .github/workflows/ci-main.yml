@@ -22,6 +22,9 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     with:
       image: ${{ secrets.DOCKER_USERNAME }}/hello-world-backend
       push: true
