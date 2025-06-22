@@ -1,4 +1,4 @@
-# 📦 Full Stack CI/CD PoC with Java + Angular + SLSA
+# 📦 Full Stack CI/CD PoC with Java + Angular + reusable github workflows
 
 This project demonstrates a full-stack application with a secure CI/CD pipeline using:
 
@@ -6,7 +6,6 @@ This project demonstrates a full-stack application with a secure CI/CD pipeline 
 - ✅ Angular frontend
 - ✅ Dockerized services
 - ✅ GitHub Actions CI/CD
-- ✅ [SLSA](https://slsa.dev/) (Supply Chain Levels for Software Artifacts) for secure Docker image builds
 - ✅ Modular, **reusable GitHub workflows**
 
 ---
@@ -39,4 +38,4 @@ docker run -d -p 8080:8080 ibrahimmagdy01/hello-world-backend
 
 ```bash
 docker pull ibrahimmagdy01/hello-world-frontend:latest
-docker run -d -p 8080:8080 ibrahimmagdy01/hello-world-frontend
+docker run -d -p 4200:4200 ibrahimmagdy01/hello-world-frontend
