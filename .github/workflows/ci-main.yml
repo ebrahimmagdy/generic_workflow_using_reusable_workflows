@@ -18,6 +18,7 @@ jobs:
 
   build-backend-image:
     uses: ebrahimmagdy/github_workflows/.github/workflows/docker-build-and-push.yml@main
+    needs: build-backend
     with:
       image: ibrahimmagdy01/hello-world-backend
       context: hello-world-backend
@@ -28,18 +29,16 @@ jobs:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 
-  # build-frontend-image:
-  #   needs: test-frontend
-  #   uses: slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v1.8.0
-  #   permissions:
-  #     contents: read
-  #     id-token: write
-  #   with:
-  #     image: ${{ secrets.DOCKER_USERNAME }}/hello-world-frontend
-  #     push: true
-  #     dockerfile: hello-world-frontend/Dockerfile
-  #     context: hello-world-frontend
-  #     registry-username: ${{ secrets.DOCKER_USERNAME }}
-  #     registry-password: ${{ secrets.DOCKER_PASSWORD }}
+  build-frontend-image:
+    uses: ebrahimmagdy/github_workflows/.github/workflows/docker-build-and-push.yml@main
+    needs: test-frontend
+    with:
+      image: ibrahimmagdy01/hello-world-frontend
+      context: hello-world-frontend
+      dockerfile: hello-world-frontend/Dockerfile
+      push: true
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 
